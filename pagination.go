@@ -1,7 +1,7 @@
 package pagination
 
 type Pagination struct {
-	total        int
+	Total        int
 	Limit        int
 	visibleRange int
 	current      int
@@ -38,14 +38,14 @@ func (p *Pagination) SetTotal(total int) {
 	if total <= 0 {
 		total = 1
 	}
-	p.total = total
+	p.Total = total
 	p.setNumPages()
 	p.current = 1
 }
 
 func (p *Pagination) setNumPages() {
-	p.numPages = p.total / p.Limit
-	if p.total%p.Limit > 0 {
+	p.numPages = p.Total / p.Limit
+	if p.Total %p.Limit > 0 {
 		p.numPages++
 	}
 }
