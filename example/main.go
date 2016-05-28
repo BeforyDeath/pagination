@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/beforydeath/pagination"
+	"github.com/BeforyDeath/pagination"
 )
 
 func main() {

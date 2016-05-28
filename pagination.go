@@ -2,7 +2,7 @@ package pagination
 
 type Pagination struct {
 	total        int
-	limit        int
+	Limit        int
 	visibleRange int
 	current      int
 	numPages     int
@@ -44,8 +44,8 @@ func (p *Pagination) SetTotal(total int) {
 }
 
 func (p *Pagination) setNumPages() {
-	p.numPages = p.total / p.limit
-	if p.total%p.limit > 0 {
+	p.numPages = p.total / p.Limit
+	if p.total%p.Limit > 0 {
 		p.numPages++
 	}
 }
@@ -57,6 +57,8 @@ func (p *Pagination) Get(current int) Pages {
 		current = p.numPages
 	}
 	p.current = current
+
+	p.Pages = Pages{}
 
 	firstPage := p.current - (p.visibleRange / 2)
 	if firstPage < 1 {
@@ -92,4 +94,9 @@ func (p *Pagination) Get(current int) Pages {
 		p.Pages.Last = p.numPages
 	}
 	return p.Pages
+}
+
+func (p *Pagination) GetOffset() (offset int) {
+	offset = (p.current - 1) * p.Limit
+	return
 }
